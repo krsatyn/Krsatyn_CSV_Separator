@@ -2,7 +2,11 @@
 
 # Krsatyn_CSV_Separator
 
-Модуль для быстрого создания датасета из одного CSV файла
+Rus:
+Модуль для быстрого создания датасета из одного CSV файла, с возможностью перевода набора данных на Русский
+
+Eng:
+A module for quickly creating a dataset from a single CSV file, with the ability to translate a dataset into Russian
 
 
 <!--Установка-->
@@ -24,22 +28,42 @@
 
     >```.venv/Scripts/activate```
 
-5. Установка зависимостей
+5. Обновите pip
+
+    >```.venv\scripts\python.exe -m pip install --upgrade pip```
+
+6. Установка зависимостей
 
     >```pip3 install -r requirements.txt```
 
-6. Импортируйте класс _CsvDatasetSeparator_
+7. Импортируйте класс _CsvDatasetSeparator_
 
-    >```from Krsatyn_CSV_Separator.main import CsvDatasetSeparator```    
+    >```from Krsatyn_CSV_Separator.main import CsvDatasetSeparator```
+
+8. Создайте экземпляр _CsvDatasetSeparator_ и передайте все нужные значения
+    >cds = CsvDatasetSeparator(csv_path=csv_path,\
+    >                          &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; csv_column=['column_name_1', 'column_name_2', 'column_name_n']\
+    >                          &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; eat_column_name='column_name',\
+    >                          &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; label_column_name='column_name',\
+    >                          &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; translate_column_names=['column_name'],\
+    >                          &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; dataset_name='dataset_name',\
+    >                          &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; save_csv=True,\
+    >                          &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; get_info=True,\
+    >                          &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; check_input=True\
+    >                          )
+
+9. Вызовите метод main()
+
+    >```cds.main()```
 
 <!--Пользовательская документация-->
 ## Документация
-Пользовательскую документацию можно получить по [этой ссылке](./docs/ru/index.md).
+
+Пользовательскую документацию на Русском можно получить по [этой ссылке](./docs/ru/index.md).
+
+User documentation in English can be obtained from [this link](./docs/ru/index.md).
 
 
 <!--Поддержка-->
 ## Поддержка
 Если у вас возникли сложности или вопросы по использованию пакета, напишите на электронную почту <kekwa2003@gmail.com>.
-
-<!--Пример-->
-## Пример использования
