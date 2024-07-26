@@ -224,17 +224,3 @@ if __name__ == '__main__':
                               )
     
     cds.main()
-    '''
-    
-    # dataset = get_dataset(csv_path=csv_path,
-    #                       csv_column=['source_id', 'source', 'mood', 'context'],
-    #                       eat_column_name='context',
-    #                       label_column_name='mood',
-    #                       translate_column_names=['mood','context'],
-    #                       #dataset_name='KEKWA',
-    #                       save_csv=True,)
-    
-    #print('\n\n',len(dataset['train'][0]), 
-    #      len(dataset['test'][0]), 
-    #      len(dataset['valid'][0]))
-    '''
