@@ -137,7 +137,7 @@ class CsvDatasetSeparator:
 
 
         except OSError:
-            print("!Ошибка сохранения!\nПроверьте нет ли папки с таким же именем и проверьте пуста ли она.")
+            print("!Saving error!\nCheck if there is a folder with the same name and check if it is empty.")
     
     """ Translation of the data set by column into Russian """
     def translate_dataset(self, data_frame:pandas.core.frame.DataFrame, column_name:str) -> pandas.core.frame.DataFrame:
