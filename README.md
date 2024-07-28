@@ -2,45 +2,49 @@
 
 # Krsatyn_CSV_Separator
 
+
 Rus:
-Модуль для быстрого создания датасета из одного CSV файла, с возможностью перевода набора данных на Русский
+Модуль для быстрого создания датасета из одного CSV файла, с возможностью перевода набора данных на Русский\
+[Инструкция на русском](readme_ru.md#sub-section)   
 
 Eng:
 A module for quickly creating a dataset from a single CSV file, with the ability to translate a dataset into Russian
 
 
-<!--Установка-->
-## Установка (Windos)
 
-1. Клонирование репозитория 
+<!--Установка-->
+## Installation (Windows)
+
+1. Cloning a repository
 
     >```git clone https://github.com/krsatyn/Krsatyn_CSV_Separator.git```
 
-2. Переход в директорию Krsatyn_CSV_Separator
+2. Going to the directory _Krsatyn_CSV_Separator_
 
     >```cd Krsatyn_CSV_Separator```
 
-3. Создание виртуального окружения
+3. Creating a virtual environment
 
     >```python3 -m venv .venv```
 
-4. Активация виртуального окружения
+4. Activating the virtual environment
 
     >```.venv/Scripts/activate```
 
-5. Обновите pip
+5. Update pip
 
     >```.venv\scripts\python.exe -m pip install --upgrade pip```
 
-6. Установка зависимостей
+6. Installing dependencies
 
     >```pip3 install -r requirements.txt```
 
-7. Импортируйте класс _CsvDatasetSeparator_
+7. Import class _CsvDatasetSeparator_
 
     >```from Krsatyn_CSV_Separator.main import CsvDatasetSeparator```
 
-8. Создайте экземпляр _CsvDatasetSeparator_ и передайте все нужные значения
+8. Create an instance _CsvDatasetSeparator_ and pass all the necessary values
+    
     >cds = CsvDatasetSeparator(csv_path=csv_path,\
     >                          &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; csv_column=['column_name_1', 'column_name_2', 'column_name_n']\
     >                          &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; eat_column_name='column_name',\
@@ -52,18 +56,18 @@ A module for quickly creating a dataset from a single CSV file, with the ability
     >                          &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; check_input=True\
     >                          )
 
-9. Вызовите метод main()
+9. Call the main() method
 
     >```cds.main()```
 
 <!--Пользовательская документация-->
-## Документация
+## Documentation
 
 Пользовательскую документацию на Русском можно получить по [этой ссылке](./docs/ru/index.md).
 
-User documentation in English can be obtained from [this link](./docs/ru/index.md).
+User documentation in English can be obtained from [this link](./docs/en/index.md).
 
 
 <!--Поддержка-->
-## Поддержка
-Если у вас возникли сложности или вопросы по использованию пакета, напишите на электронную почту <kekwa2003@gmail.com>.
+## Support
+If you have any difficulties or questions about using the package, please email <kekwa2003@gmail.com >.

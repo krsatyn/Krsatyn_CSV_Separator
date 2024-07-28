@@ -6,7 +6,7 @@ from translatepy import Translator
 from tqdm import tqdm
 
 
-class CsvDatasetSeparator:
+class CsvDatasetSeparator():
     
     def __init__(self, 
                 csv_path:str,                          # Path to the file
@@ -70,6 +70,17 @@ class CsvDatasetSeparator:
                 print()
                 print('-----------------------------\n')
     
+    ''' Create new dir name'''
+    def create_new_name(self, file_name):
+        fnew = file_name
+        root, ext = os.path.splitext(file_name)
+        i = 0
+        while os.path.exists(fnew):
+            i += 1
+            fnew = '%s_%i%s' % (root, i, ext)
+        return fnew
+    
+    
     """ Сreating a data set structure """
     def create_dataset_dir(self, dataset_name:str="dataset_folder") -> None:
         '''
@@ -92,16 +103,21 @@ class CsvDatasetSeparator:
         if not os.path.isdir(dataset_name):
             os.mkdir(dataset_name)
             os.chdir(dataset_name)
+        
+        else:
+            new_file_name = self.create_new_name(dataset_name)
+            os.mkdir(new_file_name)
+            os.chdir(new_file_name)
 
-            if not os.path.isdir('train'):
-                os.mkdir('train')
+        if not os.path.isdir('train'):
+            os.mkdir('train')
+        
+        if not os.path.isdir('test'):
+            os.mkdir('test')
+        
+        if not os.path.isdir('valid'):
+            os.mkdir('valid')
 
-            if not os.path.isdir('test'):
-                os.mkdir('test')
-
-            if not os.path.isdir('valid'):
-                os.mkdir('valid')
-    
     """ Saving a dataset by the specified name"""
     def save_dataset(self, dataset_name:str="dataset_folder", dataset_dict:dict=None) -> None:
     
@@ -123,6 +139,19 @@ class CsvDatasetSeparator:
 
         self.create_dataset_dir(dataset_name=dataset_name)
 
+
+        dataset_dict['train'][0].to_csv(r'train\train_set.csv', header=False, index=False)
+        dataset_dict['train'][1].to_csv(r'train\train_label.csv', header=False, index=False)
+
+        dataset_dict['test'][0].to_csv(r'test\test_set.csv', header=False, index=False)
+        dataset_dict['test'][1].to_csv(r'test\test_label.csv', header=False, index=False)
+
+        dataset_dict['valid'][0].to_csv(r'valid\valid_set.csv', header=False, index=False)
+        dataset_dict['valid'][1].to_csv(r'valid\valid_label.csv', header=False, index=False)
+
+        print(f"\nSaved in {os.getcwd()}")
+
+        '''
         try:
             dataset_dict['train'][0].to_csv(r'train\train_set.csv', header=False, index=False)
             dataset_dict['train'][1].to_csv(r'train\train_label.csv', header=False, index=False)
@@ -133,12 +162,15 @@ class CsvDatasetSeparator:
             dataset_dict['valid'][0].to_csv(r'valid\valid_set.csv', header=False, index=False)
             dataset_dict['valid'][1].to_csv(r'valid\valid_label.csv', header=False, index=False)
 
-            print(f"\nСохранено в {os.getcwd()}\{dataset_name}")
+            print(f"\nSaved in {os.getcwd()}")
 
 
         except OSError:
+            
+            
             print("!Saving error!\nCheck if there is a folder with the same name and check if it is empty.")
-    
+        '''
+        
     """ Translation of the data set by column into Russian """
     def translate_dataset(self, data_frame:pandas.core.frame.DataFrame, column_name:str) -> pandas.core.frame.DataFrame:
         
@@ -168,17 +200,33 @@ class CsvDatasetSeparator:
         
         if check_input:
             self.get_input_parameter_info()
-                
+        
+        
         data_frame = pandas.read_csv(csv_path, delimiter=',')
-        data_frame.columns = csv_column
+        
+        try:
+            data_frame.columns = csv_column
 
+        except(ValueError):
+            print('The number of columns in the csv file does not match the csv_column')
+            print('Please check the names of your columns')
+            return
+                
         data_frame = data_frame
 
         # checking for translation of a dataset column 
         if translate_column_names is not None:
-            for translate_column_name in translate_column_names:
-                data_frame = self.translate_dataset(data_frame=data_frame, column_name=translate_column_name)
-        
+            try:
+            
+                for translate_column_name in translate_column_names:
+                    data_frame = self.translate_dataset(data_frame=data_frame, column_name=translate_column_name)
+            
+            except(KeyError):
+                print("\nCheck the column names.")
+                print(f'Probably the name: > {translate_column_name} <')
+                print("\n!!!Attention, pass dtype:list")
+                print(f'You dtype:{type(translate_column_names)}\n')
+                
         # checking if additional information about the dataset is needed
         if get_info == True:
             self.get_dataframe_info(data_frame)
