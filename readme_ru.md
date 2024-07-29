@@ -1,5 +1,5 @@
 <!-- <img src="\img\title_1.png"> -->
-
+<img src="\img\title_1.png">
 [Назад](README.md)   
 # Krsatyn_CSV_Separator
 
